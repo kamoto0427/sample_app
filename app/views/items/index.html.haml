@@ -2,3 +2,8 @@ hello world
 
 %p
   = link_to "商品出品", new_item_path, method: :get
+
+.items
+  - @items.each do |item|
+    = item.name
+    = "¥ #{item.price.to_s(:delimited)}"
