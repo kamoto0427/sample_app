@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_12_134841) do
+ActiveRecord::Schema.define(version: 2020_08_14_094440) do
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "item_id"
-    t.string "photo"
+    t.bigint "item_id", null: false
+    t.integer "photo", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_images_on_item_id"
@@ -23,26 +23,13 @@ ActiveRecord::Schema.define(version: 2020_08_12_134841) do
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.text "explain", null: false
-    t.bigint "category_id"
-    t.text "brand"
-    t.bigint "state_id", null: false
-    t.bigint "shipping_burden_id", null: false
-    t.bigint "reservation_email_id", null: false
-    t.bigint "prefecture_id", null: false
-    t.bigint "shipping_day_id", null: false
     t.integer "price", null: false
     t.bigint "seller_id", null: false
     t.bigint "buyer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["buyer_id"], name: "index_items_on_buyer_id"
-    t.index ["category_id"], name: "index_items_on_category_id"
-    t.index ["prefecture_id"], name: "index_items_on_prefecture_id"
-    t.index ["reservation_email_id"], name: "index_items_on_reservation_email_id"
     t.index ["seller_id"], name: "index_items_on_seller_id"
-    t.index ["shipping_burden_id"], name: "index_items_on_shipping_burden_id"
-    t.index ["shipping_day_id"], name: "index_items_on_shipping_day_id"
-    t.index ["state_id"], name: "index_items_on_state_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -58,7 +45,6 @@ ActiveRecord::Schema.define(version: 2020_08_12_134841) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "images", "items"
   add_foreign_key "items", "users", column: "buyer_id"
   add_foreign_key "items", "users", column: "seller_id"
 end
