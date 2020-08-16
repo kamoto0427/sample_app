@@ -1,3 +1,205 @@
-// Place all the styles related to the credit_cards controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// 一番明るい白色
+$white: #fff;
+// FURIMAのテーマカラーのエメラルドグリーン
+$main_color: #3CCACE;
+// 背景に使われる、うっすら色がついた白
+$background: #f8f8f8;
+
+@mixin main-information__payTop {
+  height: 70px;
+  h2 {
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 50px;
+  text-align: center;
+  border-bottom: ridge;
+  }
+}
+
+.main-information {
+  // 支払い方法
+  &__payTop {
+    @include main-information__payTop;
+  }
+
+  &__payMiddle {
+    height: 150px;
+    margin-top: 10px;
+    p {
+      font-weight: bold;
+      text-align: center;      
+    }
+    &__credit-AdditionBtn {
+      width: 300px;
+      height: 50px;
+      background-color: red;
+      margin: 0 auto;
+      margin-top: 30px;
+      border-radius: 10px;
+      &__contents {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $white;
+        padding: 13px;
+        i {
+          padding-right: 10px;
+        }
+        a {
+          text-decoration: none;
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+@mixin creditCard-wrapper {
+  height: 100vh;
+  padding-top: 50px;
+  background-color: $background;
+  &__inner {
+    width: 800px;
+    margin: 0 auto;
+    background-color: $white;
+
+    &__title {
+      height: 50px;
+      border-bottom: ridge 1px;
+      h1 {
+      font-size: 28px;
+      line-height: 50px;
+      text-align: center;
+      }
+    }
+  }
+}
+
+// クレジットカード必須ボックス
+@mixin essential-redBox {
+  background-color: red;
+  color: $white;
+  padding: 3px;
+  font-size: 14px;
+}
+// カード番号・セキュリティコードのテキストフィールド
+@mixin cardNumber-input {
+  width: 300px;
+  height: 50px;
+  margin-top: 10px;
+}
+// 月・年選択ボックス
+.dateSelect {
+  width: 140px;
+  height: 50px;
+  padding-left: 10px;
+  margin-top: 10px;
+}
+// クレジットカード登録画面
+.creditCard-wrapper {
+  @include  creditCard-wrapper;
+  height: 100vh;
+  padding-top: 50px;
+  background-color: $background;
+  &__inner {
+    width: 800px;
+    margin: 0 auto;
+    background-color: $white;
+
+    &__title {
+      height: 50px;
+      border-bottom: ridge 1px;
+      h1 {
+      font-size: 28px;
+      line-height: 50px;
+      text-align: center;
+      }
+    }
+
+    &__form {
+      padding-left: 250px;
+      padding-bottom: 50px;
+      // カード番号
+      &__card-number {
+        padding: 30px 0px 30px 0px;
+        label {
+          padding-right: 10px;
+        }
+        span {
+          @include essential-redBox;
+        }
+        input {
+          @include cardNumber-input;
+          padding-left: 10px;
+        }
+      }
+      // 有効期限
+      &__dayLimit {
+        padding: 30px 0px 30px 0px;
+        label {
+          padding-right: 10px;
+        }
+        span {
+          @include essential-redBox;
+        }
+      }
+      // セキュリティーコード
+      &__security-code {
+        padding: 30px 0px 30px 0px;
+        label {
+          padding-right: 10px;
+        }
+        span {
+          @include essential-redBox;
+        }
+        input {
+          @include cardNumber-input;
+          padding-left: 10px;
+        }
+      }
+      // クレジット追加ボタン
+      &__addBtn {
+        width: 300px;
+        height: 50px;
+        background-color: red;
+        border-radius: 10px;
+        a {
+          color: $white;
+          line-height: 50px;
+          padding-left: 50px;
+        }
+      }
+    }
+  }
+}
+
+// クレジットカード一覧確認・削除ボタンありページ
+.main-information {
+  &__cardsIndex-inner {
+    &__title {
+      height: 50px;
+      border-bottom: ridge 1px;
+      h1 {
+      font-size: 28px;
+      line-height: 50px;
+      text-align: center;
+      }
+    }
+    &__contents {
+      display: flex;
+      padding: 50px 50px 50px 250px;
+      &__creditCard-information {
+        &__number {
+          margin-bottom: 10px;
+        }
+        &__date {
+          margin-bottom: 20px;
+        }
+      }
+      &__deleteBtn {
+        padding-top: 10px;
+        padding-left: 150px;
+      }
+    }
+  }
+}

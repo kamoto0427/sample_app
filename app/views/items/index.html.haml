@@ -3,6 +3,9 @@ hello world
 %p
   = link_to "商品出品", new_item_path, method: :get
 
+%p
+  = link_to "クレジットカード登録画面", new_credit_card_path, method: :get
+
 .items
   - @items.each do |item|
     = item.name
