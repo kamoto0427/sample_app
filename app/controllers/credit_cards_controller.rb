@@ -3,32 +3,39 @@ class CreditCardsController < ApplicationController
   require "payjp"
 
   def new
+    card = Card.where(user_id: current_user.id).first
+    redirect_to action: "show" if card.exists?
   end
 
   def create
-    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+    Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_PRIVATE_KEY]
 
     if params["payjp_token"].blank?
       redirect_to action: "new"
     else
       customer = Payjp::Customer.create(
-        email: current_user.email,
-        card: params["payjp_token"],
+        card: params["payjp-token"],
         metadata: {user_id: current_user.id}
       )
 
-      @card = Card.new(user_id: current_user.id)
+      @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
 
       if @card.save
+        redirect_to action: "show"
       else
         redirect_to action: "create"
       end
     end
   end
 
-  def pay
-    @item = Item.find(params[:id])
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
-    charge = Payjp::Charge.create(amount: @item.price, card: params['payjp-token'], currency: 'jpy')
+  def show
+    card = Card.where(user_id: current_user.id).first
+    if card.blank?
+      redirect_to action: "new"
+    else
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      customer = Payjp::Customer
+      @default_card_information = customer.cards.retrieve()
+    end
   end
 end

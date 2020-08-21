@@ -28,4 +28,4 @@
           = f.text_field :cvc, type: 'text', class: 'security-input', id: 'cvc', placeholder: "カード背面4ケタor3ケタの番号", maxlength: "4", type: "text", id: "payment_card_cvc"
 
         .creditCard-wrapper__inner__form__addBtn
-          = link_to "クレジットカードを追加する", credit_cards_path, method: :get, id: 'credit-btn'
+          = f.submit "クレジットカードを追加する", id: 'credit-btn'
