@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   resources :items
   resources :credit_cards do
     collection do
-      post 'show', to: 'creditCard#show'
-      post 'create', to: 'creditCard#create'
-      post 'delete', to: 'creditCard#delete'
+      post 'show', to: 'credit_card#show'
+      post 'create', to: 'credit_card#create'
+      post 'delete', to: 'credit_card#delete'
     end
   end
   resources :users

@@ -4,7 +4,7 @@
       %h1 クレジットカード情報入力
 
     .creditCard-wrapper__inner__form
-      = form_with model: @credit, method: :post, id: "cardCreateForm" do |f|
+      = form_with model: @credit, method: :post, id: "cardForm" do |f|
         .creditCard-wrapper__inner__form__card-number
           %label カード番号
           %span.essential-redBox 必須
@@ -15,17 +15,17 @@
           %label 有効期限
           %span.essential-redBox 必須
           %br
-          = f.select :exp_month, [["01",1], ["02",2], ["03",3], ["04",4], ["05",5], ["06",6], ["07",7], ["08",8], ["09",9], ["10",10], ["11",11], ["12",12]], {}, class: 'dateSelect', id: 'exp_month'
+          = f.select :exp_month, [["01",1], ["02",2], ["03",3], ["04",4], ["05",5], ["06",6], ["07",7], ["08",8], ["09",9], ["10",10], ["11",11], ["12",12]], {}, class: 'dateSelect', id: 'card-month'
           月
 
-          = f.select :exp_year, [["20",2020], ["21",2021], ["22",2022], ["23",2023], ["24",2024], ["25",2025], ["26",2026], ["27",2027], ["28",2028], ["29",2029]],{}, class: 'dateSelect', id: 'exp_year'
+          = f.select :exp_year, [["20",2020], ["21",2021], ["22",2022], ["23",2023], ["24",2024], ["25",2025], ["26",2026], ["27",2027], ["28",2028], ["29",2029]],{}, class: 'dateSelect', id: 'card-year'
           年
 
         .creditCard-wrapper__inner__form__security-code
           %label セキュリティーコード
           %span.essential-redBox 必須
           %br
-          = f.text_field :cvc, type: 'text', class: 'security-input', id: 'cvc', placeholder: "カード背面4ケタor3ケタの番号", maxlength: "4", type: "text", id: "payment_card_cvc"
+          = f.text_field :cvc, type: 'text', class: 'security-input', id: 'cvc', placeholder: "カード背面4ケタor3ケタの番号", maxlength: "4", type: "text", id: "card-cvc"
 
-        .creditCard-wrapper__inner__form__addBtn
+        .creditCard-wrapper__inner__form__addBtn#card_token
           = f.submit "クレジットカードを追加する", id: 'credit-btn'
