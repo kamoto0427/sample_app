@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root 'items#index'
   resources :items
   resources :credit_cards
+  resources :users
 end

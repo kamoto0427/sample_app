@@ -6,6 +6,9 @@ hello world
 %p
   = link_to "クレジットカード登録画面", new_credit_card_path, method: :get
 
+= link_to "ログイン", new_user_session_path, class: 'post'
+= link_to "新規登録", new_user_registration_path, class: 'post'
+
 .items
   - @items.each do |item|
     = item.name
