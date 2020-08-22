@@ -1,9 +1,9 @@
 -# %label 登録クレジットカード情報
 -# %br
--# = "**** **** ****" + @default_card_information.last4
+-# = "**** **** ****" + @card_information.last4
 -# %br
--# - exp_month = @default_card_information.exp_month.to_s
--# - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+-# - exp_month = @card_information.exp_month.to_s
+-# - exp_year = @card_information.exp_year.to_s.slice(2,3)
 -# = exp_month + "/" + exp_year
 -# = form_tag(delete_credit_cards_path, method: :post) do
 -#   %input{ type: "hidden", name: "credit-card_id", value: "" }
@@ -20,6 +20,3 @@
         .creditCard-wrapper__inner__contents__creditCard-information__date
           %p 07/25
       .creditCard-wrapper__inner__contents__deleteBtn
-        -# = form_tag(credit_card_path, method: :delete) do
-        -#   %input{ type: "hidden", name: "credit-card_id", value: "" }
-        -#   %button 削除する
