@@ -25,7 +25,7 @@
           %label セキュリティーコード
           %span.essential-redBox 必須
           %br
-          = f.text_field :cvc, type: 'text', class: 'security-input', id: 'cvc', placeholder: "カード背面4ケタor3ケタの番号", maxlength: "4", type: "text", id: "card-cvc"
+          = f.text_field :cvc, type: 'text', class: 'security-input', id: 'cvc', placeholder: "カード背面4ケタor3ケタの番号", maxlength: "4"
 
         .creditCard-wrapper__inner__form__addBtn#card_token
           = f.submit "クレジットカードを追加する", id: 'credit-btn'
