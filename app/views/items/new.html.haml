@@ -3,4 +3,8 @@
     = f.text_field :name, placeholder: :アイテムの名前
     = f.text_area :explain, placeholder: :アイテムの詳細を入力してください
     = f.text_field :price, placeholder: :アイテムの価格
-    = f.submit '出品する'
+    .file
+      = f.fields_for :images do |i|
+        = i.file_field :image, multiple: true
+    .submit
+      = f.submit '出品する'

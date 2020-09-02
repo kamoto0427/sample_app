@@ -17,4 +17,5 @@ hello world
   - @items.each do |item|
     = item.name
     = item.explain
+    = image_tag @item.image.url
     = "¥ #{item.price.to_s(:delimited)}"
