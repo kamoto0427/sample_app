@@ -1,6 +1,6 @@
 .items
-  = form_with model: @item, class: :itemForm, local: true do |form|
-    = form.text_field :name, placeholder: :アイテムの名前
-    = form.text_area :explain, placeholder: :アイテムの詳細を入力してください
-    = form.text_field :price, placeholder: :アイテムの価格
-    = form.submit '出品する'
+  = form_with model: @item, url: items_path, method: :post, class: :itemForm, local: true do |f|
+    = f.text_field :name, placeholder: :アイテムの名前
+    = f.text_area :explain, placeholder: :アイテムの詳細を入力してください
+    = f.text_field :price, placeholder: :アイテムの価格
+    = f.submit '出品する'

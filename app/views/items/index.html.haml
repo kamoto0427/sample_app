@@ -1,15 +1,20 @@
 hello world
 
 %p
-  = link_to "商品出品", new_item_path, method: :get
-
-%p
   = link_to "クレジットカード登録画面", new_credit_card_path, method: :get
 
-= link_to "ログイン", new_user_session_path, class: 'post'
-= link_to "新規登録", new_user_registration_path, class: 'post'
+.user_sign
+  - if user_signed_in?
+    = link_to "ログアウト", destroy_user_session_path, method: :delete
+    = link_to "商品出品", new_item_path, method: :get
+
+  - else
+    .user-sign-in
+      = link_to "ログイン", new_user_session_path, method: :get
+      = link_to "新規登録", new_user_registration_path, method: :get
 
 .items
   - @items.each do |item|
     = item.name
+    = item.explain
     = "¥ #{item.price.to_s(:delimited)}"

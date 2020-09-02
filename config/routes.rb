@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
   root 'items#index'
+  devise_for :users
   resources :items
   resources :credit_cards do
     collection do
@@ -9,5 +9,4 @@ Rails.application.routes.draw do
       post 'delete', to: 'credit_card#delete'
     end
   end
-  resources :users
 end
