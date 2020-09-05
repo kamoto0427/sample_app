@@ -12,6 +12,24 @@ class ItemsController < ApplicationController
     Item.create(item_params)
     redirect_to root_path
   end
+# 購入機能
+  def confirm
+    @card = Creditcard.where(user_id: current_user.id).first
+    @item = Item.find(params[:id])
+    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+    charge = Payjp::Charge.create(
+      amount: @item.price,
+      customer: Payjp::Customer.retrieve(@card.customer_id),
+      currency: 'jpy'
+    )
+    redirect_to action: 'bought'
+  end
+  
+  def bought
+    @item_buyer = Item.find(params[:id])
+    @item_buyer.update(buyer_id: current_user.id)
+    redirect_to root_path
+  end
 
   private
   def item_params
