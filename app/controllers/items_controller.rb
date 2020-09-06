@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
       customer: Payjp::Customer.retrieve(@card.customer_id),
       currency: 'jpy'
     )
-    redirect_to action: 'bought'
+    redirect_to action: 'confirm'
   end
   
   def confirm
