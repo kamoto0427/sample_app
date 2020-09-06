@@ -1,0 +1,6 @@
+-# 購入の条件分岐
+- if @item.buyer_id.present?
+  = link_to "売り切れました", root_path, class: "no-itemBtn"
+
+- else 
+  = link_to "購入画面に進む",confirm_item_path, method: :get, calss: "confirm-item"

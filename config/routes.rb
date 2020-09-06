@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   root 'items#index'
   devise_for :users
-  resources :items
+  resources :items do 
+    member do
+      post 'buy'
+      get 'confirm'
+      get 'bought'
+    end
+  end
+
   resources :credit_cards do
     collection do
       post 'show', to: 'credit_card#show'
